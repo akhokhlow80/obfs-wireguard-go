@@ -14,18 +14,18 @@ generate-version-and-build:
 	[ "$$(cat version.go 2>/dev/null)" != "$$ver" ] && \
 	echo "$$ver" > version.go && \
 	git update-index --assume-unchanged version.go || true
-	@$(MAKE) wireguard-go
+	@$(MAKE) obfs-wireguard-go
 
-wireguard-go: $(wildcard *.go) $(wildcard */*.go)
+obfs-wireguard-go: $(wildcard *.go) $(wildcard */*.go)
 	go build -v -o "$@"
 
-install: wireguard-go
-	@install -v -d "$(DESTDIR)$(BINDIR)" && install -v -m 0755 "$<" "$(DESTDIR)$(BINDIR)/wireguard-go"
+install: obfs-wireguard-go
+	@install -v -d "$(DESTDIR)$(BINDIR)" && install -v -m 0755 "$<" "$(DESTDIR)$(BINDIR)/obfs-wireguard-go"
 
 test:
 	go test ./...
 
 clean:
-	rm -f wireguard-go
+	rm -f obfs-wireguard-go
 
 .PHONY: all clean test install generate-version-and-build

@@ -12,11 +12,11 @@ import (
 
 	"golang.org/x/sys/windows"
 
-	"golang.zx2c4.com/wireguard/conn"
-	"golang.zx2c4.com/wireguard/device"
-	"golang.zx2c4.com/wireguard/ipc"
+	"github.com/akhokhlow/obfs-wireguard-go/conn"
+	"github.com/akhokhlow/obfs-wireguard-go/device"
+	"github.com/akhokhlow/obfs-wireguard-go/ipc"
 
-	"golang.zx2c4.com/wireguard/tun"
+	"github.com/akhokhlow/obfs-wireguard-go/tun"
 )
 
 const (
@@ -36,7 +36,7 @@ func main() {
 		device.LogLevelVerbose,
 		fmt.Sprintf("(%s) ", interfaceName),
 	)
-	logger.Verbosef("Starting wireguard-go version %s", Version)
+	logger.Verbosef("Starting obfs-wireguard-go version %s", Version)
 
 	tun, err := tun.CreateTUN(interfaceName, 0)
 	if err == nil {
